@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Card</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body> 
+    <div class="root">
+        <div class="container root" style="margin-top: 45px">
+            <div class="card">
+                <div class="card-header">
+                Featured
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+                </div>
+            </div>  
+        </div>               
+
+        <panel 
+            title="Special title treatment 2"
+            content='Its a broader card with text below as a natural lead-in to extra content. This content is a little longer.'>
+             <h3>Test component</h3>
+             <input type="text" placeholder="Write"/>
+            <button>Add</button>
+        </panel>
+    
+    </div>
+
+<script type="text/javascript" src="Vue.js"></script>
+<script type="text/javascript">
+    Vue.component("panel",{
+        template: `
+        <div class="container root" style="margin-top: 45px"  v-if='show'>
+            <div class="card">
+                <div class="card-header" >
+                   {{title}}
+                   <button @click='show=false'>close</button>
+                </div>
+                <div class="card-body">
+                   {{content}}
+                  
+                </div>
+                <div class="card-body">
+                        <slot></slot>
+                </div>
+            </div>
+        </div>
+        `,
+    props:['title', 'content','h'],
+    data: function(){
+        return {show:true}
+    }
+    });
+    var app = new Vue({
+        el: '.root',
+        data:{
+            name:'junaet'
+        },
+    });
+</script>
+</body>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Vue js
+    </title>
+    <style>
+    li {
+        display: inline;
+
+    }
+    .active {
+        background: gray;
+        color: white;
+        text-emphasis-color: white;
+        padding : 5px;
+    }
+    </style>
+<body>
+    <div class="root">
+        <h3>Computed property</h3>
+        <br><br>
+        <p v-for = '(payment,i) in payments'>{{i+1}} {{payment.name}} ({{payment.payment}})</p> 
+       <br><br>
+        <h3>Added property</h3>
+        <p v-for= 'upaid in unpaidPayment'>{{upaid.name}}</p>
+
+        <br><br>
+        <h5>{{totalAmount}}</h5>
+    </div>
+
+
+    <script type="text/javascript" src="Vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '.root',
+            data:{
+                payments:[
+                    {name:'house',payment:500,paid:true},
+                    {name:'car',payment:600,paid:true},
+                    {name:'ball',payment:300,paid:false},
+                    {name:'gas',payment:400,paid:true},
+                    {name:'bazar',payment:100,paid:false},
+                ],
+            },
+            computed:{
+                unpaidPayment:function(){
+                    return this.payments.filter(function(p){
+                        return !p.paid;
+                    })
+                },
+                totalAmount : function(){
+                    var sum = 0;
+                    for(var i = 0; i<this.payments.length; i++){
+                        sum += this.payments[i].payment;
+                    }
+                    return sum; 
+                }
+            }     
+        });
+    </script>
+</body>
+</html>   

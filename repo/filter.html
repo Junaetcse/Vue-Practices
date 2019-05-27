@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Vue js
+    </title>
+
+<body>
+    <div class="root">
+        <h3>{{name | up}}</h3>
+    </div>
+
+
+    <script type="text/javascript" src="Vue.js"></script>
+    <script type="text/javascript">
+
+    //global filter
+            Vue.filter('up', function(p){
+                return p.toLowerCase();
+            });
+      
+        var app = new Vue({
+            el: '.root',
+            data:{
+                name: 'Junaet hossain',
+                profession: 'Jr Developer',
+            },
+            filters:{
+                upper: function(p){
+                    return p.toUpperCase();
+                },
+                lower: function(p){
+                    return p.toLowerCase();
+                }
+            },
+            computed:{
+                filterDemo:function(){
+                    return this.name.toUpperCase();
+                },
+
+                totalAmount : function(){
+                    var sum = 0;
+                    for(var i = 0; i<this.payments.length; i++){
+                        sum += this.payments[i].payment;
+                    }
+                    return sum; 
+                }
+            },     
+        });
+    </script>
+</body>
+</html>   

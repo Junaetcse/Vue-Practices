@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Vue js
+    </title>
+    <style>
+    li {
+        display: inline;
+
+    }
+    .active {
+        background: gray;
+        color: white;
+        text-emphasis-color: white;
+        padding : 5px;
+    }
+    </style>
+<body>
+    
+    <div class="root">
+        <ul>
+            <li :class="{'active': activeLink == 'link1'}"><a :href="link1.url" :title="link1.title">{{link1.text}}</li></a>
+            <li :class="{'active': activeLink == 'link2'}"><a :href="link2.url" :title="link2.title">{{link2.text}}</li></a>
+        </ul>
+        <br><br><br>
+        <ul v-for = '(skill, i) in skills' v-if='skill.exprience >2'>
+            <li>{{i+1}}. {{skill.name}}({{skill.exprience}})</li>
+        </ul>
+        <br><br>
+       <ul v-for='item in items'>
+           <li>{{item}} <button @click='removedItem(i)'>-</button></li>
+       </ul>
+        <br><br>
+        
+        <input type="text" v-model=newItem>
+        <button v-on:click='addNewItem'>Add</button>
+
+    </div>
+    <script type="text/javascript" src="Vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+                el: '.root',
+                data: {
+                    link1:{
+                        text: 'Facebook', title: 'Go to facebook', url: 'https://www.facebook.com/'
+                    },
+                    link2:{
+                     text: 'Youtebe', title: 'Go to Youtebe', url: 'https://www.youtebe.com/'
+                    },
+                    activeLink: 'link2',
+                    html: '<a href="https://www.facebook.com/"> FB</a>',
+               
+                    skills: [
+                        {name: 'Html', exprience:1},                      
+                        {name: 'Java', exprience:2},
+                        {name: 'css', exprience:3},
+                        {name: 'php', exprience:4},
+                        {name: 'laravel', exprience:5}
+                        ],
+                    newItem:'',
+                    items:['Apple', 'Banana','Cocunat'],    
+                        
+                },
+                methods:{
+                    addNewItem(){
+                        this.items.push(this.newItem);  
+                        this.newItem='';
+                        },
+
+                    removedItem: function(i){
+                        this.items.splice(i,1);
+                    }
+                }
+
+        });
+    </script>
+    
+</body>
+</html>
